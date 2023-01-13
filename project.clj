@@ -5,6 +5,14 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.11.1"]]
   :main ^:skip-aot temporal-clojure-demo.core
+
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all
+  :repl-options {:init-ns user}
+
+  :profiles {:dev     {:dependencies   [[org.clojure/tools.namespace "1.3.0"]
+                                        [criterium "0.4.6"]
+                                        [eftest "0.6.0"]]
+                       :resource-paths ["jna/target"]
+                       :aliases        {"clj-kondo" ["run" "-m" "clj-kondo.main"]}}
+             :uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
