@@ -10,26 +10,31 @@
 
 (defn- http-post
   [url args]
-  (log/debug "http-post:" url args)
   (p/create
    (fn [resolve reject]
      (http/post url
-                (assoc args :async? true
+                (assoc args
+                       :async? true
                        :as :json
                        :content-type :json)
                 resolve
                 reject))))
 
-(defn slack-post
-  ([token op] (slack-post token op {}))
+(defn invoke
+  ([token op] (invoke token op {}))
   ([token op params]
+   (log/debug "invoke:" op params)
    (-> (http-post (str "https://slack.com/api/" op)
                   {:headers {"Authorization" (str "Bearer " token)}
                    :form-params params})
        (p/then (fn [{{:keys [ok error] :as body} :body}]
                  (if-not ok
-                   (p/rejected (ex-info error {}))
-                   body))))))
+                   (do
+                     (log/error error)
+                     (p/rejected (ex-info error {})))
+                   (do
+                     (log/debug "response:" body)
+                     body)))))))
 
 (defn- connect-ws
   [url ch]
@@ -57,7 +62,7 @@
   [{:keys [api-token]}]
   (let [rx (async/chan)
         tx (async/chan)]
-    @(-> (slack-post api-token "apps.connections.open")
+    @(-> (invoke api-token "apps.connections.open")
          (p/then (fn [{:keys [url]}]
                    (connect-ws url rx)))
          (p/then (partial xmit-listener tx)))

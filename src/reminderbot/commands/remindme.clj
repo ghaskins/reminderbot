@@ -14,7 +14,7 @@
 (defactivity send-reminder
   [{:keys [bot-token] :as ctx} {:keys [user_id phrase] :as params}]
   (log/trace "sending:" params)
-  @(slack/slack-post bot-token "chat.postMessage" {:channel user_id :text (str "Psst.  I was told to remind you to " phrase)})
+  @(slack/invoke bot-token "chat.postMessage" {:channel user_id :text (str "Psst.  I was told to remind you to " phrase)})
   :ok)
 
 (defn duration-from-now
