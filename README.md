@@ -60,4 +60,8 @@ Example:
 /remindme "take out the trash" in 20 minutes
 ```
 
-The parsing grammar is limited and likely fragile.  At a high level, it needs a basic structure of a quoted phrase, followed by "in" and a number, and a unit that is one of "seconds", "minutes", "hours", or "days".
+This should result in a DM posted by the Reminder Bot at the correct time.  For example:
+
+![DM](images/dm.png)
+
+> N.B. The parsing grammar is limited and likely fragile.  At a high level, it needs a basic structure of a quoted phrase, followed by "in" and a number, and a unit that is one of "seconds", "minutes", "hours", or "days".
