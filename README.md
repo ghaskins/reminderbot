@@ -12,10 +12,13 @@ We **do** want to do things the hard way here because the purpose is to demonstr
 
 ## Installation
 
-You will need to [install a Slack App](https://api.slack.com/authentication/basics) with a Slash Command for /remindme, and OAuth scopes for
+You will need to [install a Slack App](https://api.slack.com/authentication/basics):
 
-- chat:write
-- commands
+- Enable Socket Mode
+- Add a Slash Command for /remindme
+- Ensure you have OAuth scopes for:
+  - chat:write
+  - commands
 
 Collect the App Token and Bot Token for later use
 
