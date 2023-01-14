@@ -47,7 +47,7 @@ Run the application
 lein run
 ```
 
-## Usage from with Slack
+## Usage from within Slack
 
 Once the bot is active in your workspace, you will find a new command '/remindme' accessible from any channel.  You may invoke this command with a deferred message and time duration, and the bot will dutifully post the message back to you at the specified time.
 
