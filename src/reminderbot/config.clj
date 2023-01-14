@@ -1,18 +1,25 @@
-(ns temporal-clojure-demo.config
+;; Copyright © 2023 Greg Haskins.  All rights reserved
+
+(ns reminderbot.config
   (:require [environ.core :refer [env]])
   (:refer-clojure :exclude [get]))
 
 ;; Any default may be overridden with an environment variable following
 ;; environ.core's keyword -> envvar translation
 (def default-config
-  {})
+  {:api-token                   nil
+   :bot-token                   nil
+   :workflow-hostport           "localhost:7233"
+   :workflow-namespace          "default"
+   :workflow-queuename          "reminderbot"})
 
 (def int-types #{})
 (def bool-types #{})
 
 (def truthy #{"true" "1"})
 
-(defn convert-bool [x]
+(defn convert-bool
+  [x]
   (contains? truthy x))
 
 (defn parse
@@ -22,13 +29,14 @@
   [k default-value]
   (cond-> (env k default-value)
 
-          (contains? int-types k)
-          (parse-long)
+    (contains? int-types k)
+    (parse-long)
 
-          (contains? bool-types k)
-          (convert-bool)))
+    (contains? bool-types k)
+    (convert-bool)))
 
-(defn get []
+(defn get
+  []
   (reduce (fn [acc [k v]] (assoc acc k (parse k v))) {} default-config))
 
 (defn merge-components
@@ -36,4 +44,3 @@
    (merge-components components (get)))
   ([components config]
    (reduce (fn [acc [k v]] (assoc acc k (merge v config))) {}  components)))
-

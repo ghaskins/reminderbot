@@ -1,6 +1,6 @@
-(ns temporal-clojure-demo.core-test
+(ns reminderbot.core-test
   (:require [clojure.test :refer :all]
-            [temporal-clojure-demo.core :refer :all]))
+            [reminderbot.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

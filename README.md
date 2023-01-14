@@ -1,44 +1,27 @@
-# temporal-clojure-demo
+# Reminder Bot for Slack
 
-FIXME: description
+This project implements a Bot for Slack that adds a /remindme command.  This command allows you to schedule a future reminder posted back to yourself at a specific time as a Direct Message (DM).
+
+## Motivation
+
+This bot is of little practical use, and the implementation is probably overkill since Slack already supports a [Scheduled Message](https://api.slack.com/messaging/scheduling) API.  The Slack documentation reads:
+
+> If you want to do things the hard way, your app could implement state storage and job scheduling to send this message at the right time ...
+
+We **do** want to do things the hard way here because the purpose is to demonstrate [Temporal](https://temporal.io/) and the [temporal-clojure-sdk](https://github.com/manetu/temporal-clojure-sdk).  What I hope you take away from this is that this remains easy through the elegance and power of Temporal and Clojure, despite the warning from the Slack documentation.  This power will matter more when you build applications of consequence rather than this silly toy.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+Coming soon
 
 ## Usage
 
-FIXME: explanation
+Once the bot is active in your workspace, you will find a new command '/remindme' accessible from any channel.  You may invoke this command with a deferred message and time duration, and the bot will dutifully post the message back to you at the specified time.
 
-    $ java -jar temporal-clojure-demo-0.1.0-standalone.jar [args]
+Example:
 
-## Options
+```shell
+/remindme "take out the trash" in 20 minutes
+```
 
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2023 FIXME
-
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+The parsing grammar is limited and likely fragile.  At a high level, it needs a basic structure of a quoted phrase, followed by "in" and a number, and a unit that is one of "seconds", "minutes", "hours", or "days".

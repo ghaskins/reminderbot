@@ -1,3 +1,3 @@
-# Introduction to temporal-clojure-demo
+# Introduction to reminderbot
 
 TODO: write [great documentation](http://jacobian.org/writing/what-to-write/)

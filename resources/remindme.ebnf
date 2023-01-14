@@ -1,0 +1,17 @@
+term ::= phrase ws in ws numeric ows units
+
+<in> ::= <"in">
+
+<quote> ::= <"\"">
+
+<ws> ::= <#"\s+">
+<ows> ::= <#"\s*">
+
+<phrase>  ::= quote #"[^\"]*" quote | <"“"> #"[^”]*" <"”">
+<numeric> ::= #"[+-]?\d+"
+
+<units> ::= seconds | minutes | hours | days
+seconds ::= <"seconds">
+minutes ::= <"minutes">
+hours ::= <"hours">
+days ::= <"days">
