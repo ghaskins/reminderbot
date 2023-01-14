@@ -8,7 +8,7 @@ This bot is of little practical use, and the implementation is probably overkill
 
 > If you want to do things the hard way, your app could implement state storage and job scheduling to send this message at the right time ...
 
-We **do** want to do things the hard way here because the purpose is to demonstrate [Temporal](https://temporal.io/) and the [temporal-clojure-sdk](https://github.com/manetu/temporal-clojure-sdk).  What I hope you take away from this is that this remains easy through the elegance and power of Temporal and Clojure, despite the warning from the Slack documentation.  This power will matter more when you build applications of consequence rather than this silly toy.
+We **do** want to do things the hard way here because the purpose is to demonstrate [Temporal](https://temporal.io/) and the [temporal-clojure-sdk](https://github.com/manetu/temporal-clojure-sdk).  The takeaway here is that the implementation remains easy despite the warning because of the elegance and power of Temporal and Clojure.  This power will matter more when you build applications of consequence rather than this silly toy.
 
 ## Installation
 
