@@ -59,10 +59,10 @@
         (ws/close! ws)))))
 
 (defn open-connection
-  [{:keys [api-token]}]
+  [{:keys [app-token]}]
   (let [rx (async/chan)
         tx (async/chan)]
-    @(-> (invoke api-token "apps.connections.open")
+    @(-> (invoke app-token "apps.connections.open")
          (p/then (fn [{:keys [url]}]
                    (connect-ws url rx)))
          (p/then (partial xmit-listener tx)))

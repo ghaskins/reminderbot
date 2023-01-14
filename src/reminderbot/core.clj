@@ -5,8 +5,9 @@
             [taoensso.timbre :as log]
             [integrant.core :as ig]
             [reminderbot.slack-api :as slack]
+            [reminderbot.temporal :as temporal]
             [reminderbot.commands.core :as commands]
-            [reminderbot.temporal :as temporal]))
+            [reminderbot.commands.remindme]))
 
 (defmulti dispatch (fn [_ {:keys [type]}] type))
 

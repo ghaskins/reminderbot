@@ -12,9 +12,42 @@ We **do** want to do things the hard way here because the purpose is to demonstr
 
 ## Installation
 
-Coming soon
+You will need to [install a Slack App](https://api.slack.com/authentication/basics) with a Slash Command for /remindme, and OAuth scopes for
 
-## Usage
+- chat:write
+- commands
+
+Collect the App Token and Bot Token for later use
+
+## Running
+
+### Temporal
+
+You will need an available Temporal service.  A convenient way to get this for testing is via [temporalite](https://github.com/temporalio/temporalite)
+
+```shell
+git clone https://github.com/temporalio/temporalite.git
+cd temporalite
+go build -o dist/temporalite ./cmd/temporalite
+./dist/temporalite start --namespace default --ephemeral
+```
+
+### ReminderBot
+
+Set up environment variables for the tokens generated in the previous steps
+
+```shell
+export APP_TOKEN=xxx
+export BOT_TOKEN=yyy
+```
+
+Run the application
+
+```shell
+lein run
+```
+
+## Usage from with Slack
 
 Once the bot is active in your workspace, you will find a new command '/remindme' accessible from any channel.  You may invoke this command with a deferred message and time duration, and the bot will dutifully post the message back to you at the specified time.
 

@@ -7,7 +7,7 @@
 ;; Any default may be overridden with an environment variable following
 ;; environ.core's keyword -> envvar translation
 (def default-config
-  {:api-token                   nil
+  {:app-token                   nil
    :bot-token                   nil
    :workflow-hostport           "localhost:7233"
    :workflow-namespace          "default"
