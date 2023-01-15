@@ -10,8 +10,13 @@
                  [hato "0.9.0"]
                  [clj-http "3.12.3"]
                  [cheshire "5.11.0"]
-                 [instaparse "1.4.12"]
                  [clojure.java-time "1.2.0"]
+                 [com.zoho/hawking "0.1.7"]
+                 [com.taoensso/timbre "6.0.4"]
+                 [com.fzakaria/slf4j-timbre "0.3.21"]
+                 [org.slf4j/jul-to-slf4j "2.0.5"]
+                 [org.slf4j/jcl-over-slf4j "2.0.5"]
+                 [org.slf4j/log4j-over-slf4j "2.0.5"]
                  [io.github.manetu/temporal-sdk "0.12.1"]]
   :main ^:skip-aot reminderbot.main
 

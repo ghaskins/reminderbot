@@ -13,6 +13,7 @@
 
 (log/set-config!
  {:level :trace
+  :ns-whitelist ["reminderbot.*"]
   :appenders {:println (appenders/println-appender {:stream :auto})}})
 
 (def options
