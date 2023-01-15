@@ -52,16 +52,22 @@ lein run
 
 ## Usage from within Slack
 
-Once the bot is active in your workspace, you will find a new command '/remindme' accessible from any channel.  You may invoke this command with a deferred message and time duration, and the bot will dutifully post the message back to you at the specified time.
+Once the bot is active in your workspace, you will find a new command '/remindme' accessible from any channel.  You may invoke this command with natural language, including the message you would like to send to yourself and a time reference, and the bot will dutifully post the message back to you at the requested time.
 
-Example:
+Examples:
 
 ```shell
-/remindme "take out the trash" in 20 minutes
+/remindme take out the trash in 20 minutes
 ```
 
-This should result in a DM posted by the Reminder Bot at the correct time.  For example:
+```shell
+/remindme pick up the kids at 4pm
+```
+
+```shell
+/remindme unlock the front door tomorrow morning
+```
+
+Doing so should result in an eventual DM posted by the Reminder Bot at the correct time.  For example:
 
 ![DM](images/dm.png)
-
-> N.B. The parsing grammar is limited and likely fragile.  At a high level, it needs a basic structure of a quoted phrase, followed by "in" and a number, and a unit that is one of "seconds", "minutes", "hours", or "days".
