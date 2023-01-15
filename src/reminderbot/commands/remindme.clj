@@ -32,17 +32,12 @@
   (let [w (temporal/create-workflow wf-client workflow {:task-queue workflow-queuename})]
     (temporal/start w args)))
 
-(defn markdown-response [text]
-  {:blocks [{:type "section"
-             :text {:type "mrkdwn"
-                    :text text}}]})
-
 (defmethod core/dispatch "/remindme"
   [ctx {{:keys [text] :as payload} :payload}]
   (log/trace "remindme:" payload)
   (try
     (let [{:keys [phrase deadline]} (parse/remindme text)]
       (launch-workflow ctx schedule-reminder (assoc payload :phrase phrase :deadline deadline))
-      (markdown-response (str "Ok, I'll remind you to " phrase " at " deadline)))
+      {:text (str "Ok, I'll remind you to " phrase " at " deadline)})
     (catch Exception e
-      (markdown-response "Hmm, I don't know what you mean.  Try '/remindme take out the trash in 20 minutes`"))))
+      {:text "Hmm, I don't know what you mean.  Try '/remindme take out the trash in 20 minutes`"})))
