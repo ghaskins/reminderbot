@@ -24,10 +24,10 @@
   (log/trace "unknown msg:" payload))
 
 (defn ack-event
-  [{:keys [tx]} {:keys [envelope_id] :as m} payload]
+  [{:keys [tx]} {:keys [envelope_id] :as m} response]
   (when (some? envelope_id)
     (>!! tx {:envelope_id envelope_id
-             :payload payload})))
+             :payload response})))
 
 (defn start
   [ctx]
@@ -35,9 +35,9 @@
         ctx (assoc ctx :tx tx)]
     (log/info "Starting event-loop")
     (go-loop []
-      (if-let [m (<! rx)]
-        (let [payload (dispatch ctx m)]
-          (ack-event ctx m payload)
+      (if-let [event (<! rx)]
+        (let [response (dispatch ctx event)]
+          (ack-event ctx event response)
           (recur))
         (do
           (log/info "Shutting down event-loop"))))
